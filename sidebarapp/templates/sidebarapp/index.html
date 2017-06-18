@@ -1,0 +1,15 @@
+{%extends "sidebarapp/base.html"%}
+
+{%block body%}
+
+<div class="wrapper">
+  <form class="form-sidebar" action="" method="get" id="formSidebar">
+    {%for genre,check in genrescheck.items%}
+    <input type=checkbox  id={{genre}}_checkbox name={{genre}} value="true" class="checkbox-hidden"{% ifequal check "true" %}checked{%endifequal%}>
+    <label for="{{genre}}_checkbox" id="label_{{genre}}_checkbox" style="{% ifequal check 'true' %}background:blue;{%endifequal%}" onclick="colortoggle(this.id)">{{genre}}</label>
+    {%endfor%}
+    <input type="submit" name="genre" value="Submit" id="formSubmit"></input>
+  </form>
+</div>
+
+{%endblock%}
