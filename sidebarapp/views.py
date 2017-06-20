@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from models import Movie
 # Create your views here.
 def IndexView(request):
     template_name="sidebarapp/index.html"
@@ -7,7 +8,7 @@ def IndexView(request):
     genrescheck={}
     for genre in genres:
         genrescheck.update({genre:request.GET.get(genre,"false")})
-    #movies=search()
+    movies=Movie.objects.all()
     context={"genrescheck":genrescheck,"movies":movies}
     print request.GET
     #print movies

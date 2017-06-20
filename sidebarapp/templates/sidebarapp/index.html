@@ -1,15 +1,30 @@
 {%extends "sidebarapp/base.html"%}
 
 {%block body%}
-
-<div class="wrapper">
-  <form class="form-sidebar" action="" method="get" id="formSidebar">
-    {%for genre,check in genrescheck.items%}
-    <input type=checkbox  id={{genre}}_checkbox name={{genre}} value="true" class="checkbox-hidden"{% ifequal check "true" %}checked{%endifequal%}>
-    <label for="{{genre}}_checkbox" id="label_{{genre}}_checkbox" style="{% ifequal check 'true' %}background:blue;{%endifequal%}" onclick="colortoggle(this.id)">{{genre}}</label>
+    <div class="wrapper">
+      <form class="form-sidebar" action="" method="get" id="formSidebar">
+        {%for genre,check in genrescheck.items%}
+        <input type=checkbox  id={{genre}}_checkbox name={{genre}} value="true" class="checkbox-hidden"{% ifequal check "true" %}checked{%endifequal%}>
+        <label for="{{genre}}_checkbox" id="label_{{genre}}_checkbox" style="{% ifequal check 'true' %}background:blue;{%endifequal%}" onclick="colortoggle(this.id)">{{genre}}</label>
+        {%endfor%}
+        <input type="submit" name="genre" value="Submit" id="formSubmit" class="btn btn-success"></input>
+      </form>
+    </div>
+  <div class="container" id="movie-container">
+    {%if movies%}
+    {%for movie in movies%}
+    <div  id="colthumb">
+      <div class="thumbnail">
+        <div class="caption" style="text-align:center;color:white;">
+          {{movie.movie_title}}
+        </div>
+        <img src="{{movie.movie_logo}}" style="max-height:272px;">
+      </div>
+      <div id="stars" style="position:relative;bottom:17px;left:21px;">
+      {%include "sidebarapp/star.html"%}
+      </div>
+    </div>
     {%endfor%}
-    <input type="submit" name="genre" value="Submit" id="formSubmit"></input>
-  </form>
-</div>
-
+    {%endif%}
+  </div>
 {%endblock%}
