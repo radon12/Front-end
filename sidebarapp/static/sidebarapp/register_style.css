@@ -1,0 +1,11 @@
+body{
+  background-image: url("images/4194461-background-picture.jpg");
+}
+.jumbotron{
+  background-color: white;
+  margin: 0;
+}
+#formContainer{
+  position: relative;
+  top:160px;
+}

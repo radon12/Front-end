@@ -1,0 +1,20 @@
+form label{
+  color: white;
+}
+body{
+  background-image: url("images/4194461-background-picture.jpg");
+}
+form{
+  position: absolute;
+  top:40%;
+  left:35%;
+  width:50%;
+}
+a:hover{
+  text-decoration: none;
+}
+#createlink{
+  padding: 0.8%;
+  position: relative;
+  left:1%;
+}

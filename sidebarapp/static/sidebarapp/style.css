@@ -1,7 +1,7 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 body{
-  background-image: url("images/4194461-background-picture.jpg")
+  background-image: url("images/4194461-background-picture.jpg");
 }
 .wrapper{
   width: 300px;
@@ -11,7 +11,7 @@ body{
   color:white;
   text-align: center;
   top:50px;
-  z-index: -1000;
+  z-index:1000;
 }
 form.form-sidebar{
   position: absolute;
@@ -99,3 +99,4 @@ form.form-sidebar{
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+.rating label:hover{cursor: pointer;}

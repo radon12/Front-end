@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{%static 'sidebarapp/login.css' %}">
+
+<form class="form-horizontal" method="post" action="{%url 'sidebar:login'%}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="col-lg-offset-2 col-sm-8">
+    <span class="text-danger"><small>{{error_message}}</small></span>
+  </div>
+  <br>
+  <div class="row form-group">
+    <label class="col-lg-2 control-label" for="username">Username:</label>
+    <div class="col-lg-3">
+      <input type="text" class="form-control" name="username">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-lg-2 control-label" for="password" >Password:</label>
+    <div class="col-lg-3">
+      <input type="password" name="password" class="form-control">
+    </div>
+  </div>
+  <br>
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-3" id="createlink">
+        <a href="{%url 'sidebar:register'%}">Don&#39;t have an account?</a>
+      </div>
+      <button type="submit" class="col-lg-2 btn btn-success" name="submit">Log In</button>
+    </div>
+</form>

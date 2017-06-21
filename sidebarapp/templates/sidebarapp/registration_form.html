@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{%static 'sidebarapp/register_style.css' %}">
+
+
+<body>
+<div class="jumbotron">
+    <h1 style="position:relative;left:18%;">MoRe</h1>
+</div>
+<div class="container-fluid" id="formContainer">
+  <div class="row">
+    <div class="col sm-7">
+      <div class="panel panel-default">
+        <div class="panel-body ">
+          <h3 class="col-sm-offset-2">Create a New Account</h3>
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            {%include "sidebarapp/form_template.html"%}
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Register</buttom>
+            </div>
+          </form<
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

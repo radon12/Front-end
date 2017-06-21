@@ -6,6 +6,7 @@ function colortoggle(id)
       document.getElementById(id).style.background="blue";
     else
       document.getElementById(id).style.background="";
+    
     console.log(background);
     console.log(id);
 }
