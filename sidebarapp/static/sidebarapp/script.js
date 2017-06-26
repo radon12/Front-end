@@ -1,12 +1,6 @@
-function colortoggle(id)
+function formsubmit()
 {
-    var background;
-    background=document.getElementById(id).style.background;
-    if(background!="blue")
-      document.getElementById(id).style.background="blue";
-    else
-      document.getElementById(id).style.background="";
-    
-    console.log(background);
-    console.log(id);
+  $('#searchnav :input').not(':submit').clone().hide().appendTo('#formcomb');
+  $('#formSidebar :input').not(':submit').clone().hide().appendTo('#formcomb');
+    document.getElementById('formcomb').submit();
 }

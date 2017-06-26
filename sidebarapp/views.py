@@ -17,12 +17,13 @@ def IndexView(request):
     for genre in genres:
         genrescheck.update({genre:request.GET.get(genre,"false")})
     movies=Movie.objects.all()
-    context={"genrescheck":genrescheck,"movies":movies}
+    q=request.GET.get("q","")
+    context={"genrescheck":genrescheck,"movies":movies,"q":q}
     print request.GET
     #print movies
     print context
-    print genrescheck
     print request.user
+    print (request.user).id
     #make a search fuction and make it return movies and add that to context that combines
     return render(request,template_name,context)
 
@@ -66,9 +67,18 @@ def login_user(request):
             return render(request, 'sidebarapp/login.html', {'error_message': 'Invalid login'})
     return render(request, 'sidebarapp/login.html')
 
-def rate_movie(request, movie_id):
+def rate_movie(request):
+    movie_id=request.GET.get("movie_id",-1)
+    rating=request.GET.get("rating",0)
+    user_id=request.user.id
     movie = get_object_or_404(Movie, pk=movie_id)
+    user = get_object_or_404(User,pk=user_id)
     try:
-        movie.save()
-    except (KeyError, Movie.DoesNotExist):
+        rate=Rating()
+        rate.user=user
+        rate.movie
+        rate.rating=rating
+        rate.save()
+        return redirect('sidebar:index')
+    except (KeyError, Movie.DoesNotExist,User.DoesNotExist):
         return redirect('sidebar:index')
