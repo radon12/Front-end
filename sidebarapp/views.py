@@ -6,6 +6,7 @@ from django.contrib.auth import logout
 from django.shortcuts import render, get_object_or_404,redirect
 from django.core.urlresolvers import reverse_lazy
 import views
+from django.contrib.auth.models import User
 
 # index view
 def IndexView(request):
@@ -16,14 +17,26 @@ def IndexView(request):
     genrescheck={}
     for genre in genres:
         genrescheck.update({genre:request.GET.get(genre,"false")})
+
     movies=Movie.objects.all()
+    movie_and_rating={}
+    user=request.user
+    for movie in movies:
+        try:
+            rate=Rating.objects.filter(movie=movie,user=user)
+            movie_rating=rate[0].rating
+        except(IndexError):
+            movie_rating="0"
+        movie_and_rating.update({movie:movie_rating})
     q=request.GET.get("q","")
-    context={"genrescheck":genrescheck,"movies":movies,"q":q}
-    print request.GET
+    context={"genrescheck":genrescheck,"movie_and_rating":movie_and_rating,"q":q}
+
     #print movies
+    print request.GET
     print context
     print request.user
     print (request.user).id
+
     #make a search fuction and make it return movies and add that to context that combines
     return render(request,template_name,context)
 
@@ -68,17 +81,22 @@ def login_user(request):
     return render(request, 'sidebarapp/login.html')
 
 def rate_movie(request):
-    movie_id=request.GET.get("movie_id",-1)
-    rating=request.GET.get("rating",0)
+    movie_id=request.POST.get("movie_id",-1)
+    rating=request.POST.get("rating",0)
     user_id=request.user.id
     movie = get_object_or_404(Movie, pk=movie_id)
     user = get_object_or_404(User,pk=user_id)
     try:
-        rate=Rating()
-        rate.user=user
-        rate.movie
+        rate=Rating.objects.filter(movie=movie,user=user)
+        try:
+            rate=rate[0]
+        except (IndexError):
+            rate=Rating()
+            rate.user=user
+            rate.movie=movie
         rate.rating=rating
         rate.save()
         return redirect('sidebar:index')
-    except (KeyError, Movie.DoesNotExist,User.DoesNotExist):
+    except (KeyError, Movie.DoesNotExist,User.DoesNotExist),e:
+        print e
         return redirect('sidebar:index')

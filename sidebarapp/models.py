@@ -28,7 +28,7 @@ class oldUser(models.Model):
 class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    rating = models.FloatField()
+    rating = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.movie.movie_title + self.userid + " " + str(self.rating)
+        return self.movie.movie_title + " " + self.user.username+ " " + str(self.rating)

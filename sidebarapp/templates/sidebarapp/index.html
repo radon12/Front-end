@@ -10,8 +10,8 @@
   </form>
 </div>
 <div class="container" id="movie-container">
-{%if movies%}
-{%for movie in movies%}
+{%if movie_and_rating%}
+{%for movie,rating in movie_and_rating.items%}
 <div  id="colthumb">
   <div class="thumbnail">
     <div class="caption" style="text-align:center;color:white;">
@@ -21,8 +21,9 @@
   </div>
   <div id="stars" style="position:relative;bottom:17px;left:21px;">
   <form method="post" id="{{movie.id}}_stars" action="{%url 'sidebar:rate'%}">
+  {% csrf_token %}
   {%include "sidebarapp/star.html"%}
-  <input type="text" value="{{movie_id}}" class="hidden">
+  <input type="text" name="movie_id" value="{{movie.id}}" class="hidden">
   </form>
   </div>
 </div>
@@ -31,4 +32,13 @@
 </div>
 <form id="formcomb" action="{%url 'sidebar:index'%}" method="get">
 </form>
+
+<script>
+  {%for movie,rating in movie_and_rating.items%}
+  var id_star={{movie.id}}+"_star"+{{rating}};
+  console.log(id_star)
+  if({{rating}}!="0")
+    document.getElementById(id_star).checked="true";
+  {%endfor%}
+</script>
 {%endblock%}
