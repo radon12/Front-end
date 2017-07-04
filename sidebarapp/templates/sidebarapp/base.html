@@ -37,10 +37,14 @@
         <div class="form-group">
           <input type="text" class="form-control" name="q" value='{{q}}'>
         </div>
-        <label class="btn btn-default" onclick="formsubmit()">Search</label>
+        <label class="btn btn-default" onclick="formsubmit()" onkeypress="enterpress(event)">Search</label>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li class="">
+        <li>
+          <!--maybe use for Dropdown for profile-->
+          <a href="#" style="padding:5px;"><label class="btn btn-default"> Recommendations</label></a>
+        </li>
+        <li>
           <!--maybe use for Dropdown for profile-->
           <a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; Profile</a>
         </li>

@@ -7,7 +7,6 @@ from django.shortcuts import render, get_object_or_404,redirect
 from django.core.urlresolvers import reverse_lazy
 import views
 from django.contrib.auth.models import User
-
 # index view
 def IndexView(request):
     if not request.user.is_authenticated():
@@ -100,3 +99,19 @@ def rate_movie(request):
     except (KeyError, Movie.DoesNotExist,User.DoesNotExist),e:
         print e
         return redirect('sidebar:index')
+
+def populate_data(request):
+    f=open("/home/radon12/Documents/Sidebar/Django/sidebar/sidebarapp/movieswrite.csv",'r')
+    for eachline in f:
+        list=eachline.split('^')
+        movie=Movie()
+        movie.movie_title=list[0]
+        movie.movie_date=list[1]
+        movie.movie_genre=list[2]
+        movie.movie_logo=list[3]
+        movie.save()
+    return redirect("sidebar:index")
+def recommendations(request):
+    template_name="sidebarapp/recommed.html"
+    context={}
+    return render(request,template_name,context)    

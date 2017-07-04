@@ -36,7 +36,6 @@
 <script>
   {%for movie,rating in movie_and_rating.items%}
   var id_star={{movie.id}}+"_star"+{{rating}};
-  console.log(id_star)
   if({{rating}}!="0")
     document.getElementById(id_star).checked="true";
   {%endfor%}
