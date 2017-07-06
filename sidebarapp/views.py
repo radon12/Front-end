@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404,redirect
 from django.core.urlresolvers import reverse_lazy
 import views
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 # index view
 def IndexView(request):
     if not request.user.is_authenticated():
@@ -114,4 +115,4 @@ def populate_data(request):
 def recommendations(request):
     template_name="sidebarapp/recommed.html"
     context={}
-    return render(request,template_name,context)    
+    return render(request,template_name,context)

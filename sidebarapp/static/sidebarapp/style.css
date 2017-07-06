@@ -11,7 +11,7 @@ body{
   color:white;
   text-align: center;
   top:50px;
-  z-index:-1000;
+  z-index:1000;
 }
 form.form-sidebar{
   position: absolute;

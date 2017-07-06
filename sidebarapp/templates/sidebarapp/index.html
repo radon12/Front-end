@@ -19,8 +19,8 @@
     </div>
     <img src="{{movie.movie_logo}}" style="max-height:272px;">
   </div>
-  <div id="stars" style="position:relative;bottom:17px;left:21px;">
-  <form method="post" id="{{movie.id}}_stars" action="{%url 'sidebar:rate'%}">
+  <div style="position:relative;bottom:17px;left:21px;">
+  <form  class="stars" method="post" id="{{movie.id}}_stars" action="{%url 'sidebar:rate'%}">
   {% csrf_token %}
   {%include "sidebarapp/star.html"%}
   <input type="text" name="movie_id" value="{{movie.id}}" class="hidden">
@@ -36,6 +36,7 @@
 <script>
   {%for movie,rating in movie_and_rating.items%}
   var id_star={{movie.id}}+"_star"+{{rating}};
+  console.log(id_star)
   if({{rating}}!="0")
     document.getElementById(id_star).checked="true";
   {%endfor%}
