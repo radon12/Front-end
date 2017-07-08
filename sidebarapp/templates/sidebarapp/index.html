@@ -1,7 +1,7 @@
 {%extends "sidebarapp/base.html"%}
 
 {%block body%}
-<div class="wrapper">
+<div class="wrapper" id="SideBar">
   <form class="form-sidebar" action="{%url 'sidebar:index'%}" method="get" id="formSidebar" enctype="multipart/form-data">
     {%for genre,check in genrescheck.items%}
     <input type=checkbox  id="{{genre}}_checkbox" name={{genre}} value="true" class="checkbox-hidden"{% ifequal check "true" %}checked{%endifequal%} onclick="formsubmit()">

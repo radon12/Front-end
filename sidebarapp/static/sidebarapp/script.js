@@ -97,3 +97,7 @@ $(function() {
     });
 
 });
+function show(){
+  var left=document.getElementById("SideBar").style.left;
+  document.getElementById("SideBar").style.left="0px";
+}

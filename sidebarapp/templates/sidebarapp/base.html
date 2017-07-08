@@ -7,7 +7,7 @@
 <script src="{% static 'sidebarapp/script.js' %}"></script>
 
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" id="NavBar">
   <div class="container-fluid" id="divtopNavBar">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=#topNavBar>
@@ -23,7 +23,7 @@
       <ul class="nav navbar-nav">
         <li class="active">
           <a href="{% url 'sidebar:index'%}">
-            <span class="glyphicon glyphicon-facetime-video"></span>&nbsp; Movies
+            <span class="glyphicon glyphicon-facetime-video keepontop"></span>&nbsp; Movies
           </a>
         </li>
         <!--
@@ -38,12 +38,11 @@
           <input type="text" class="form-control" name="q" value='{{q}}'>
         </div>
         <label class="btn btn-default" onclick="formsubmit()" onkeypress="enterpress(event)">Search</label>
+        <div class="form-group">
+            <span class="btn btn-default" onclick="show()">Search by genre</span>
+        </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <!--maybe use for Dropdown for profile-->
-          <a href="#" style="padding:5px;"><label class="btn btn-default"> Recommendations</label></a>
-        </li>
         <li>
           <!--maybe use for Dropdown for profile-->
           <a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp; Profile</a>
@@ -54,6 +53,9 @@
           </a>
         </li>
       </ul>
+      <div class="navbar-form navbar-right form-group">
+          <span class="btn btn-default">Recommendations</span>
+      </div>
     </div>
   </div>
 </nav>
